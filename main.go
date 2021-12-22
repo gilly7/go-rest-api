@@ -49,3 +49,12 @@ func createEvent(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(newEvent)
 }
+func getOneEvent(w http.ResponseWriter, r *http.Request) {
+	eventID := mux.Vars(r)["id"]
+
+	for _, singleEvent := range events {
+		if singleEvent.ID == eventID {
+			json.NewEncoder(w).Encode(singleEvent)
+		}
+	}
+}
